@@ -4,9 +4,9 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.6",
-  "main": "dist/@ayun/vue-codemirror.umd.js",
-  "module": "dist/@ayun/vue-codemirror.es.js",
+  "version": "1.0.7",
+  "main": "dist/@amoayun/vue-codemirror.umd.js",
+  "module": "dist/@amoayun/vue-codemirror.es.js",
   "files": [
     "dist",
     "README.md",
