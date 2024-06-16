@@ -12,6 +12,13 @@
     "README.md",
     "style.css"
   ],
+  "keywords": [
+    "vue",
+    "codemirror",
+    "vue3",
+    "vue3-codemirror",
+    "vue-codemirror"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/amoayun/amoayun-vue-codemirror"
