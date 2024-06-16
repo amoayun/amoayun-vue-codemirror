@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AmoAYunCodemirror v-model="jsonData" />
+    <AmoAYunCodemirror style="width: 500px;height: 320px;margin: 100px auto 0;" v-model="jsonData" />
   </div>
 </template>
 

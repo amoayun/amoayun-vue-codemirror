@@ -12,6 +12,7 @@ export default defineConfig({
     compression({
       threshold: 1024 * 5,
       skipIfLargerOrEqual: true,
+      deleteOriginalAssets: true,
     }),
     createHtmlPlugin({
       inject: {
@@ -32,33 +33,33 @@ export default defineConfig({
   build: {
     outDir: "dist",
     lib: {
-      entry: path.resolve(__dirname, "src/index.ts"),
-      name: "@ayun/vue-codemirror",
-      fileName: (format) => `@ayun/vue-codemirror.${format}.js`
+      entry: path.resolve(__dirname, "src/vue-codemirror.ts"),
+      name: "@amoayun/vue-codemirror",
+      fileName: (format, entryName) => `@amoayun/${entryName}.${format}.js`
     },
     rollupOptions: {
       external: ["vue"],
       output: {
         globals: { vue: "Vue" },
-        manualChunks: {
-          codemirror: [
-            "codemirror",
-            "vue-codemirror6",
-            "@codemirror/theme-one-dark",
-            "@codemirror/autocomplete"
-          ],
-          "codemirror-lang": [
-            "@codemirror/lang-java",
-            "@codemirror/lang-javascript",
-            "@codemirror/lang-json",
-            "@codemirror/lang-python",
-            "@codemirror/lang-sql",
-          ]
-        },
+        // manualChunks: {
+        //   codemirror: [
+        //     "codemirror",
+        //     "vue-codemirror6",
+        //     "@codemirror/theme-one-dark",
+        //     "@codemirror/autocomplete"
+        //   ],
+        //   "codemirror-lang": [
+        //     "@codemirror/lang-java",
+        //     "@codemirror/lang-javascript",
+        //     "@codemirror/lang-json",
+        //     "@codemirror/lang-python",
+        //     "@codemirror/lang-sql",
+        //   ]
+        // },
         // Static resource classification and packaging
-        chunkFileNames: "assets/js/[name]-[hash].js",
-        entryFileNames: "assets/js/[name]-[hash].js",
-        assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+        // chunkFileNames: "assets/js/[name]-[hash].js",
+        // entryFileNames: "assets/js/[name]-[hash].js",
+        // assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
       }
     }
   }

@@ -2,11 +2,19 @@
   "name": "@amoayun/vue-codemirror",
   "private": true,
   "version": "0.0.0",
+  "main": "dist/@ayun/vue-codemirror.umd.js.gz",
+  "module": "dist/@ayun/vue-codemirror.es.js.gz",
+  "files": [
+    "dist",
+    "README.md",
+    "style.css"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npx eslint && vite build",
-    "build:default": "vue-tsc && vite build",
+    "build": "vite build",
+    "build:eslint": "npx eslint && vite build",
+    "build:tsc": "vue-tsc && vite build",
     "preview": "vite preview",
     "stylelint": "stylelint --fix \"src/**/*.{vue,css,scss,less}\"",
     "lint": "npx eslint"
