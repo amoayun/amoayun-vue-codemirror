@@ -49,28 +49,72 @@ npm install @amoayun/vue-codemirror --save
 
 <br/>
 
-# 属性
-| 属性名 | 描述 | 类型 | 默认值 |
-| ------ | ---- | ---- | ------ |
-| v-model | 绑定值 | string | - |
-| options | 自定义提示项 | ``Array<{label: string;type?: "keyword"\|"variable"\|"text"\|'function';apply?: string;detail?: string; }>`` | - |
-| dark | 是否开启暗黑模式 | boolean | - |
-| disabled | 是否禁用 | boolean | - |
-| lang | 支持的语法 | 'python' \| 'java' \| 'javascript' \| 'sql' \| 'json' 目前只适配了这几种语言 | - |
+<style>
+  .wide-table {
+    width: 100%;
+  }
+  .wide-table .column-1{
+    width: 60px;
+  }
+  .wide-table .column-2{
+    width: 110px;
+  }
+  .wide-table .column-4{
+    width: 60px;
+  }
+</style>
+<table class="wide-table">
+  <tr>
+    <th class="column-1">属性名</th>
+    <th class="column-2">描述</th>
+    <th class="column-3">类型</th>
+    <th class="column-4">默认值</th>
+  </tr>
+  <tr>
+    <td class="column-1">v-mode</td>
+    <td class="column-2">绑定</td>
+    <td class="column-3">strin</td>
+    <td class="column-4">-</td>
+  </tr>
+  <tr>
+    <td class="column-1">options</td>
+    <td class="column-2">自定义提示项</td>
+    <td class="column-3">Array<{label: string;type?: "keyword"|"variable"|"text"|'function';apply?: string;detail?: string; }></td>
+    <td class="column-4">-</td>
+  </tr>
+  <tr>
+    <td class="column-1">dark</td>
+    <td class="column-2">是否开启暗黑模式</td>
+    <td class="column-3">boolean</td>
+    <td class="column-4">-</td>
+  </tr>
+  <tr>
+    <td class="column-1">disabled</td>
+    <td class="column-2">是否禁用</td>
+    <td class="column-3">boolean</td>
+    <td class="column-4">-</td>
+  </tr>
+  <tr>
+    <td class="column-1">lang</td>
+    <td class="column-2">支持的语法</td>
+    <td class="column-3">'python' \| 'java' \| 'javascript' \| 'sql' \| 'json' 目前只适配了这几种语言</td>
+    <td class="column-4">-</td>
+  </tr>
+</table>
 
 
 > ### 【注意】
 > - 当 __lang__ 为 __sql__ 时，配置的 __options__ 会失效（因为我太菜，还没有想到办法适配）
-> - 其他的属性你们就可以直接参考 ___[vue-codemirror6](https://github.com/logue/vue-codemirror6)___ 了，我就是个二道贩子，哈哈哈，基于 [vue-codemirror6](https://github.com/logue/vue-codemirror6)___ 做的一层封装，让大家感觉更方便用一点
+> - 其他的属性你们就可以直接参考 ___[vue-codemirror6](https://github.com/logue/vue-codemirror6)___ 了，我就是个二道贩子，哈哈哈，基于 ___[vue-codemirror6](https://github.com/logue/vue-codemirror6)___  做的一层封装，让大家感觉更方便用一点
 
 <br/>
 
 # 方法
 
-| 方法名 | 描述 | 参数 | 返回值 |
-| ------ | ---- | ---- | ------ |
-| insertText | 光标位置插入内容 | val: string | - |
-| codeMirror | 组件内部的codeMirror的ref | - | - |
+| 方法名     | 描述                      | 参数        | 返回值 |
+| ---------- | ------------------------- | ----------- | ------ |
+| insertText | 光标位置插入内容          | val: string | -      |
+| codeMirror | 组件内部的codeMirror的ref | -           | -      |
 
 <br/>
 
