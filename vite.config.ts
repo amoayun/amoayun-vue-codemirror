@@ -12,7 +12,7 @@ export default defineConfig({
     compression({
       threshold: 1024 * 5,
       skipIfLargerOrEqual: true,
-      deleteOriginalAssets: true,
+      deleteOriginalAssets: false,
     }),
     createHtmlPlugin({
       inject: {
