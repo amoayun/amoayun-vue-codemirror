@@ -8,8 +8,8 @@
 > - 没有，但是相信我们的故事正在发生。可能知道结果不尽人意，但是只要见到她就很开心呀，哈哈哈
 > - 作为开发者的你 ***现在有喜欢的人吗？***  
 >> - ### 愿我家 ***阿芸*** 平安喜乐，万事胜意。
+>> - ___愿世界和平___
 >> - 愿天下有情人终成眷属
->> - 愿世界和平
 >> - 愿本组件能完美的帮助你呀
   
   <br/>
@@ -38,70 +38,22 @@ npm install @amoayun/vue-codemirror --save
 
   const jsonData = ref<string>(JSON.stringify({ "sweetheart": "阿芸", "desc": "you are the apple of my eyes" }, null, 2));
 
-  {/*  自定义提示 */}
+  // 自定义提示项
   const myOptions: any = [
     { label: 'amoyun', type: 'keyword' },
   ]
 </script>
 ```
 
-![图片](./dist/picture_1.jpg)
+![图片](dist/picture_1.jpg)  
 
-<br/>
-
-<style>
-  .wide-table {
-    width: 100%;
-  }
-  .wide-table .column-1{
-    width: 60px;
-  }
-  .wide-table .column-2{
-    width: 110px;
-  }
-  .wide-table .column-4{
-    width: 70px;
-    text-align: center;
-  }
-</style>
-<table class="wide-table">
-  <tr>
-    <th class="column-1">属性名</th>
-    <th class="column-2">描述</th>
-    <th class="column-3">类型</th>
-    <th class="column-4">默认值</th>
-  </tr>
-  <tr>
-    <td class="column-1">v-mode</td>
-    <td class="column-2">绑定</td>
-    <td class="column-3">strin</td>
-    <td class="column-4">-</td>
-  </tr>
-  <tr>
-    <td class="column-1">options</td>
-    <td class="column-2">自定义提示项</td>
-    <td class="column-3">Array<{label: string;type?: "keyword"|"variable"|"text"|'function';apply?: string;detail?: string; }></td>
-    <td class="column-4">-</td>
-  </tr>
-  <tr>
-    <td class="column-1">dark</td>
-    <td class="column-2">是否开启暗黑模式</td>
-    <td class="column-3">boolean</td>
-    <td class="column-4">-</td>
-  </tr>
-  <tr>
-    <td class="column-1">disabled</td>
-    <td class="column-2">是否禁用</td>
-    <td class="column-3">boolean</td>
-    <td class="column-4">-</td>
-  </tr>
-  <tr>
-    <td class="column-1">lang</td>
-    <td class="column-2">支持的语法</td>
-    <td class="column-3">'python'|'java'|'javascript'|'sql'|'json' 目前只适配了这几种语言</td>
-    <td class="column-4">-</td>
-  </tr>
-</table>
+| 属性名   | 描述             | 类型                                                                                                    | 默认值 |
+| -------- | ---------------- | ------------------------------------------------------------------------------------------------------- | :----: |
+| v-mode   | 绑定             | string                                                                                                  |   -    |
+| options  | 自定义提示项     | Array<{label: string;type?: "keyword"\|"variable"\|"text"\|'function';apply?: string;detail?: string;}> |   -    |
+| dark     | 是否开启暗黑模式 | boolean                                                                                                 |   -    |
+| disabled | 是否禁用         | boolean                                                                                                 |   -    |
+| lang     | 支持的语法       | 'python'\|'java'\|'javascript'\|'sql'\|'json' 目前只适配了这几种语言                                    |   -    |
 
 
 > ### 【注意】

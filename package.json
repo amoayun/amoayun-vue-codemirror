@@ -12,6 +12,12 @@
     "README.md",
     "style.css"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amoayun/amoayun-vue-codemirror"
+  },
+  "homepage": "https://github.com/amoayun/amoayun-vue-codemirror",
+  "author": "@amoayun",
   "type": "module",
   "scripts": {
     "dev": "vite",
