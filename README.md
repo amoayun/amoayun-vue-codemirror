@@ -60,7 +60,8 @@ npm install @amoayun/vue-codemirror --save
     width: 110px;
   }
   .wide-table .column-4{
-    width: 60px;
+    width: 70px;
+    text-align: center;
   }
 </style>
 <table class="wide-table">
@@ -97,7 +98,7 @@ npm install @amoayun/vue-codemirror --save
   <tr>
     <td class="column-1">lang</td>
     <td class="column-2">支持的语法</td>
-    <td class="column-3">'python' \| 'java' \| 'javascript' \| 'sql' \| 'json' 目前只适配了这几种语言</td>
+    <td class="column-3">'python'|'java'|'javascript'|'sql'|'json' 目前只适配了这几种语言</td>
     <td class="column-4">-</td>
   </tr>
 </table>
