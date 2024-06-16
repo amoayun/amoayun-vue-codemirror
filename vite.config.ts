@@ -1,9 +1,10 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import AutoImport from 'unplugin-auto-import/vite';
-import Components from 'unplugin-vue-components/vite';
-import { compression } from 'vite-plugin-compression2';
-import { createHtmlPlugin } from 'vite-plugin-html'
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import AutoImport from "unplugin-auto-import/vite";
+import Components from "unplugin-vue-components/vite";
+import { compression } from "vite-plugin-compression2";
+import { createHtmlPlugin } from "vite-plugin-html";
+import path from "path";
 
 export default defineConfig({
   plugins: [
@@ -15,11 +16,50 @@ export default defineConfig({
     createHtmlPlugin({
       inject: {
         data: {
-          title: require('./package.json').name || 'Vite App',
+          title: require("./package.json").name || "Vite App",
         }
       }
     }),
     AutoImport({}),
     Components({}),
   ],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src")
+    },
+    extensions: [".vue", ".ts", ".js", ".tsx", ".jsx", ".mjs", ".json"]
+  },
+  build: {
+    outDir: "dist",
+    lib: {
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "@ayun/vue-codemirror",
+      fileName: (format) => `@ayun/vue-codemirror.${format}.js`
+    },
+    rollupOptions: {
+      external: ["vue"],
+      output: {
+        globals: { vue: "Vue" },
+        manualChunks: {
+          codemirror: [
+            "codemirror",
+            "vue-codemirror6",
+            "@codemirror/theme-one-dark",
+            "@codemirror/autocomplete"
+          ],
+          "codemirror-lang": [
+            "@codemirror/lang-java",
+            "@codemirror/lang-javascript",
+            "@codemirror/lang-json",
+            "@codemirror/lang-python",
+            "@codemirror/lang-sql",
+          ]
+        },
+        // Static resource classification and packaging
+        chunkFileNames: "assets/js/[name]-[hash].js",
+        entryFileNames: "assets/js/[name]-[hash].js",
+        assetFileNames: "assets/[ext]/[name]-[hash].[ext]"
+      }
+    }
+  }
 })
