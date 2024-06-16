@@ -1,0 +1,42 @@
+{
+  "name": "@amoayun/vue-codemirror",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build:default": "vue-tsc && vite build",
+    "preview": "vite preview",
+    "stylelint": "stylelint --fix \"src/**/*.{vue,css,scss,less}\"",
+    "lint": "npx eslint",
+    "build": "npx eslint && vite build"
+  },
+  "dependencies": {
+    "@codemirror/autocomplete": "^6.16.2",
+    "@codemirror/lang-java": "^6.0.1",
+    "@codemirror/lang-javascript": "^6.2.2",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/lang-python": "^6.1.6",
+    "@codemirror/lang-sql": "^6.6.4",
+    "@codemirror/theme-one-dark": "^6.1.2",
+    "codemirror": "^6.0.1",
+    "lodash": "^4.17.21",
+    "vue": "^3.4.21",
+    "vue-codemirror6": "^1.3.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@types/lodash": "^4.17.5",
+    "@vitejs/plugin-vue": "^5.0.5",
+    "eslint": "^9.5.0",
+    "eslint-plugin-vue": "^9.26.0",
+    "globals": "^15.4.0",
+    "less": "^4.2.0",
+    "stylelint": "^16.6.1",
+    "stylelint-config-standard-less": "^3.0.1",
+    "typescript": "^5.2.2",
+    "typescript-eslint": "^7.13.0",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.21"
+  }
+}
