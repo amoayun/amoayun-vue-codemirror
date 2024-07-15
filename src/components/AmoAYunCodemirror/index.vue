@@ -1,83 +1,78 @@
 <template>
-  <code-mirror v-model="jsonData" ref="codeMirrorRef" class="my-code-mirror my-scrollbar" wrap :extensions="extensions"
-    v-bind="$attrs" @change="codeMirrorChange" />
+  <code-mirror
+    v-model="jsonData"
+    ref="codeMirrorRef"
+    class="my-code-mirror my-scrollbar"
+    wrap
+    :extensions="extensions"
+    v-bind="$attrs"
+    @change="codeMirrorChange"
+    @ready="codeMirrorReady"
+  />
 </template>
 
 <script setup lang="ts">
-import CodeMirror from 'vue-codemirror6';
-import { basicSetup } from 'codemirror';
-import { oneDark } from '@codemirror/theme-one-dark';
-import { computed, ref, nextTick, watchEffect, toRaw } from 'vue';
-import { getExtension } from './language';
+import CodeMirror from "vue-codemirror6";
+import { basicSetup } from "codemirror";
+import { oneDark } from "@codemirror/theme-one-dark";
+import { computed, ref, watchEffect, toRaw } from "vue";
+import { getExtension } from "./language";
 const props = defineProps<{
   lang?: langType; // 语言类型
   dark?: boolean; // 是否使用暗黑主题
   options?: Array<myCompletionsExtension.item>; // 自定义语法扩展
-  modelValue: string; // 绑定值
+  modelValue?: string; // 绑定值
 }>();
-const emits = defineEmits(['update:modelValue']);
-const jsonData = ref<string>('');
-const insertFlag = ref<boolean>(false);
+const emits = defineEmits(["update:modelValue"]);
+const jsonData = ref<string>("");
 const codeMirrorRef = ref<any>(null);
+const codeMirrorIsReady = ref<boolean>(false);
+
 watchEffect(() => {
-  if (typeof props.modelValue !== 'string') {
-    // console.error('codeMirror组件 v-model 绑定值必须是字符串类型');
-    return;
-  };
-  // 如果插入标识为false，说明是外层的数据发生了改变
-  if (!insertFlag.value) {
-    // 如果外层数据长度小于当前数据长度,重置光标位置，防止因为数据长度变化导致光标位置不正确而导致报错
-    if (props.modelValue.length < jsonData.value.length) {
-      codeMirrorRef.value.setCursor(props.modelValue.length);
-    }
-  }
-  jsonData.value = props.modelValue;
+  // 如果codemirror没有准备好，直接返回
+  if (!codeMirrorIsReady.value) return;
+  // 如果不是字符串，直接返回
+  if (typeof props.modelValue !== "string") return;
+  // 如果相同，直接返回
+  if (props.modelValue === jsonData.value) return;
+  codeMirrorRef.value.replaceRange(props.modelValue, 0, jsonData.value.length);
 });
-const codeMirrorChange = () => emits('update:modelValue', jsonData.value);
+const codeMirrorReady = () => (codeMirrorIsReady.value = true);
+const codeMirrorChange = (e: any) => emits("update:modelValue", e.toJSON().doc);
 // 语法扩展
 const extensions = computed(() => {
-  const exts = [
-    basicSetup,
-    ...getExtension(props.lang, props.options),
-  ];
+  const exts = [basicSetup, ...getExtension(props.lang, props.options)];
   // 是否使用暗黑主题
   if (props.dark) exts.push(oneDark);
   return exts;
 });
 // 指定光标位置插入文本
 const insertText = (text: string) => {
-  if (!codeMirrorRef.value || !text) return;
-  insertFlag.value = true;
-  // 当 insertFlag 渲染完成后再执行插入操作
-  nextTick(() => {
-    // 获取光标位置
-    const cursor = codeMirrorRef.value.getCursor();
-    // 插入文本
-    jsonData.value = `${jsonData.value.slice(0, cursor)}${text}${jsonData.value.slice(cursor)}`;
-    // 设置光标位置
-    codeMirrorRef.value.focus = true;
-    nextTick(() => {
-      // 设置光标位置
-      codeMirrorRef.value.setCursor(cursor + text.length);
-      // 重置插入标识
-      insertFlag.value = false;
-    })
-  })
+  if (!codeMirrorRef.value || !text || typeof text !== "string") return;
+  // 获取光标位置
+  const cursor = codeMirrorRef.value.getCursor() || 0;
+  // 插入文本
+  codeMirrorRef.value.replaceRange(text, cursor, cursor);
+  // 设置光标位置
+  codeMirrorRef.value.focus = true;
+  // 设置光标位置
+  codeMirrorRef.value.setCursor(cursor + text.length);
 };
 defineExpose<{
-  insertText: typeof insertText,
-  codeMirror: any
+  insertText: typeof insertText;
+  codeMirror: any;
 }>({
   insertText,
-  codeMirror: toRaw(codeMirrorRef)
+  codeMirror: toRaw(codeMirrorRef),
 });
 </script>
 
 <style scoped lang="less">
 .my-code-mirror {
   width: 100%;
-  border: 1px solid #eee;
+  border: 1px solid var(--color-neutral-3);
   overflow: auto;
+  min-height: 200px;
   position: relative;
 
   :deep(.cm-editor) {
@@ -96,7 +91,7 @@ defineExpose<{
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #ccc;
+    background-color: var(--color-neutral-4);
     border-radius: 6px;
   }
 }
