@@ -40,8 +40,16 @@ npm install @amoayun/vue-codemirror --save
 
   // 自定义提示项
   const myOptions: any = [
-    { label: 'amoyun', type: 'keyword' },
-  ]
+    {
+      label: "amoyun",
+      type: "keyword",
+      apply: JSON.stringify(
+        { sweetheart: "阿芸", desc: "you are the apple of my eyes" },
+        null,
+        2
+      ),
+    },
+  ];
 </script>
 ```
 
@@ -74,3 +82,7 @@ npm install @amoayun/vue-codemirror --save
 # 后续
 - 我当然会一致坚持啦，哈哈哈，因为看见她我就很开心呀，哈哈哈
 - 组件会持续完善的，感谢大家的使用
+
+# 版本更新
+## 2024-07-16
+- 解决使用函数清空v-model双向绑定的变量的值时候会出现的无响应问题。

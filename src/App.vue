@@ -24,7 +24,17 @@ const str2 = JSON.stringify(
 );
 const jsonData = ref<string>(str);
 // 自定义提示项
-const myOptions: any = [{ label: "amoyun", type: "keyword", apply: str }];
+const myOptions: any = [
+  {
+    label: "amoyun",
+    type: "keyword",
+    apply: JSON.stringify(
+      { sweetheart: "阿芸", desc: "you are the apple of my eyes" },
+      null,
+      2
+    ),
+  },
+];
 </script>
 
 <style scoped lang="less"></style>
