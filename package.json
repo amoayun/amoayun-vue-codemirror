@@ -4,7 +4,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "dist/@amoayun/vue-codemirror.umd.js",
   "module": "dist/@amoayun/vue-codemirror.es.js",
   "files": [
