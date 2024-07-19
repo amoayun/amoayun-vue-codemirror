@@ -5,7 +5,7 @@ import python from './python';
 import sql from './sql';
 import javascript from './javascript';
 
-export const getExtension = (lang: langType | undefined, options: myCompletionsExtension.item[] | undefined) => {
+export const getExtension = (lang: langType | undefined, options?: myCompletionsExtension.item[]) => {
   const extensions: any[] = [];
   switch (lang) {
     case 'java':

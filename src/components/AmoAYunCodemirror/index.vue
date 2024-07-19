@@ -3,11 +3,11 @@
     v-model="jsonData"
     ref="codeMirrorRef"
     class="my-code-mirror my-scrollbar"
-    wrap
-    :extensions="extensions"
-    v-bind="$attrs"
+    :wrap="computedWrap"
+    :extensions="computedExtensions"
     @change="codeMirrorChange"
     @ready="codeMirrorReady"
+    v-bind="$attrs"
   />
 </template>
 
@@ -22,8 +22,13 @@ const props = defineProps<{
   dark?: boolean; // 是否使用暗黑主题
   options?: Array<myCompletionsExtension.item>; // 自定义语法扩展
   modelValue?: string; // 绑定值
+  wrap?: boolean; // 是否自动换行
+  extensions?: any[]; // 语法扩展
 }>();
-const emits = defineEmits(["update:modelValue"]);
+const computedWrap = computed(() =>
+  props.wrap !== undefined ? props.wrap : false
+);
+const emits = defineEmits(["update:modelValue", "ready", "change"]);
 const jsonData = ref<string>("");
 const codeMirrorRef = ref<any>(null);
 const codeMirrorIsReady = ref<boolean>(false);
@@ -37,10 +42,16 @@ watchEffect(() => {
   if (props.modelValue === jsonData.value) return;
   codeMirrorRef.value.replaceRange(props.modelValue, 0, jsonData.value.length);
 });
-const codeMirrorReady = () => (codeMirrorIsReady.value = true);
-const codeMirrorChange = (e: any) => emits("update:modelValue", e.toJSON().doc);
+const codeMirrorReady = () => {
+  codeMirrorIsReady.value = true;
+  emits("ready");
+};
+const codeMirrorChange = (e: any) => {
+  emits("update:modelValue", e.toJSON().doc);
+  emits("change", e);
+};
 // 语法扩展
-const extensions = computed(() => {
+const computedExtensions = computed(() => {
   const exts = [basicSetup, ...getExtension(props.lang, props.options)];
   // 是否使用暗黑主题
   if (props.dark) exts.push(oneDark);
