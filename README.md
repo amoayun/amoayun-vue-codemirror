@@ -86,3 +86,6 @@ npm install @amoayun/vue-codemirror --save
 # 版本更新
 ## 2024-07-16
 - 解决使用函数清空v-model双向绑定的变量的值时候会出现的无响应问题。
+
+## 2024-07-20
+- 解决无法直接挂载 @ready 和 @change 的问题。
