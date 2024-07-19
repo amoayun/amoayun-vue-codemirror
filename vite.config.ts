@@ -2,18 +2,18 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
-import { compression } from "vite-plugin-compression2";
+// import { compression } from "vite-plugin-compression2";
 import { createHtmlPlugin } from "vite-plugin-html";
 import path from "path";
 
 export default defineConfig({
   plugins: [
     vue(),
-    compression({
-      threshold: 1024 * 5,
-      skipIfLargerOrEqual: true,
-      deleteOriginalAssets: false,
-    }),
+    // compression({
+    //   threshold: 1024 * 5,
+    //   skipIfLargerOrEqual: true,
+    //   deleteOriginalAssets: false,
+    // }),
     createHtmlPlugin({
       inject: {
         data: {

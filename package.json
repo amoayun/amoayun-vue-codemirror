@@ -5,7 +5,7 @@
     "access": "public"
   },
   "description": "基于vue3的一款codemirror，简单实用，支持双向绑定。CodeMirror6 Component for vue3.",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "main": "dist/@amoayun/vue-codemirror.umd.js",
   "module": "dist/@amoayun/vue-codemirror.es.js",
   "files": [
